@@ -1,0 +1,18 @@
+---
+
+---
+
+<div class="aspect-4/3 w-full bg-gray-200">
+  <img id="cover-image" alt="" class="w-full h-full object-cover" />
+</div>
+<script>
+  const date = new Date();
+  const hour = date.getHours();
+  const isDay = hour >= 6 && hour < 18;
+  const image = document.getElementById(
+    "cover-image"
+  ) as HTMLImageElement | null;
+  if (image) {
+    image.src = isDay ? "/cover_day.jpeg" : "/cover_night.jpeg";
+  }
+</script>
