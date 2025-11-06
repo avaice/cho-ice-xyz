@@ -1,0 +1,30 @@
+---
+import Header from "../components/header.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  notitle?: boolean;
+}
+
+const { title, notitle } = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="flex flex-col md:flex-row gap-16 p-4 md:py-12 max-w-[1024px] mx-auto"
+  >
+    <Header />
+    <div class="grow flex flex-col gap-6">
+      {!notitle && <h1 class="text-3xl font-bold">{title}</h1>}
+      <slot />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+---
+const links = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "About",
+    href: "/about",
+  },
+  {
+    label: "Work",
+    href: "/work",
+  },
+] as const;
+---
+
+<header class="shrink-0">
+  <div class="md:hidden">
+    <div class="size-[64px] bg-gray-200"></div>
+  </div>
+  <div class="hidden md:flex w-[150px] flex-col gap-4">
+    <div class="size-[150px] bg-gray-200"></div>
+    <nav>
+      <ul class="flex flex-col gap-3">
+        {
+          links.map((link) => (
+            <li class="text-black w-full border-b block hover:text-green-700 transition">
+              <a href={link.href} class="text-lg w-full inline-block">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
