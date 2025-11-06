@@ -1,0 +1,24 @@
+---
+import MainLayout from "../../layouts/main-layout.astro";
+import "../../styles/global.css";
+
+import { getBlogs } from "../../lib/microcms";
+const response = await getBlogs({ fields: ["id", "title"], limit: 9999 });
+---
+
+<MainLayout title="Blog">
+  <ul class="flex flex-col gap-2">
+    {
+      response.contents.map((content) => (
+        <li>
+          <a
+            href={`/blog/${content.id}`}
+            class="underline hover:text-green-700 transition"
+          >
+            {content.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</MainLayout>
