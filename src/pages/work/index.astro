@@ -1,0 +1,135 @@
+---
+import MainLayout from "../../layouts/main-layout.astro";
+import "../../styles/global.css";
+import WorksJson from "./works.json";
+
+type Work = {
+  title: string;
+  date: string;
+  description: string;
+  image: string;
+  link?: string;
+  ruby?: string;
+};
+
+// dateから年を抽出（範囲の場合は最初の年を使用）
+const getYear = (date: string): number => {
+  const yearStr = date.split("/")[0];
+  return parseInt(yearStr, 10);
+};
+
+// 年ごとにグループ化
+const groupedByYear = WorksJson.reduce(
+  (acc: Record<number, Work[]>, work: Work) => {
+    const year = getYear(work.date);
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(work);
+    return acc;
+  },
+  {} as Record<number, Work[]>
+);
+
+// 年を降順でソート
+const years = Object.keys(groupedByYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+---
+
+<MainLayout title="Work">
+  <div class="flex flex-col gap-16">
+    {
+      years.map((year) => (
+        <div class="flex gap-4 flex-col md:flex-row-reverse">
+          <h2 class="text-3xl font-bold text-gray-500">{year}</h2>
+          <div class="relative grid grid-cols-2 md:grid-cols-3 gap-4">
+            {groupedByYear[year].map((work, index) => (
+              <div
+                id={`work-container-${year}-${index}`}
+                class="transition-all duration-300 ease-in-out"
+              >
+                <button
+                  type="button"
+                  onclick={`toggleWorkDescription(${year}, ${index})`}
+                >
+                  <img
+                    src={work.image}
+                    alt={work.title}
+                    class="w-full aspect-4/3 object-cover shadow border border-gray-200 md:hover:outline-green-700 outline-2 outline-transparent transition-all rounded"
+                  />
+                </button>
+                <div
+                  class="bg-gray-100 p-4 hidden absolute left-0 w-full shadow-lg z-10 transition-all duration-300 ease-in-out"
+                  id={`work-${year}-${index}`}
+                >
+                  <h3 class="text-xl font-bold underline hover:text-green-700 transition">
+                    <a href={work.link} target="_blank">
+                      {work.title}
+                    </a>
+                  </h3>
+                  <p class="mt-2 text-sm">{work.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</MainLayout>
+<script is:inline>
+  let activeDescription = null;
+
+  async function toggleWorkDescription(year, index) {
+    const desc = document.getElementById(`work-${year}-${index}`);
+    const container = document.getElementById(
+      `work-container-${year}-${index}`
+    );
+    if (!desc || !container) return;
+
+    if (activeDescription !== null) {
+      if (activeDescription[0] === year && activeDescription[1] === index) {
+        // 閉じるアニメーション
+        activeDescription = null;
+        desc.style.opacity = "0";
+        container.style.height =
+          container.offsetHeight - desc.offsetHeight + "px";
+        setTimeout(() => {
+          desc.classList.add("hidden");
+          desc.style.opacity = "";
+          container.style.height = "";
+        }, 150);
+        return;
+      }
+      toggleWorkDescription(...activeDescription);
+      await new Promise((resolve) => setTimeout(resolve, 150));
+    }
+
+    // 開くアニメーション
+    activeDescription = [year, index];
+
+    // 一時的に表示して高さを取得
+    desc.classList.remove("hidden");
+    desc.style.opacity = "0";
+    const descHeight = desc.offsetHeight;
+
+    // 元の状態に戻す
+    desc.classList.add("hidden");
+    desc.style.opacity = "";
+
+    requestAnimationFrame(() => {
+      // 現在の高さを明示的に設定（アニメーションの開始点）
+      const currentHeight = container.offsetHeight;
+      container.style.height = currentHeight + "px";
+
+      desc.classList.remove("hidden");
+      desc.style.opacity = "0";
+
+      requestAnimationFrame(() => {
+        container.style.height = currentHeight + descHeight + "px";
+        desc.style.opacity = "1";
+      });
+    });
+  }
+</script>

@@ -1,0 +1,102 @@
+[
+  {
+    "title": "ScriptBoard",
+    "date": "2024/11",
+    "description": "生成AI搭載のオンラインスクリプトエディター。  \nNext.jsを使ったフルスタック開発です。バックエンドとフロントエンドを同じコードベースにすることで開発効率を上げつつ、SSRとCSRを適切に使い分けてパフォーマンスも重視しました。",
+    "link": "https://sb.cho-ice.xyz/",
+    "image": "/work-thumbs/sb.jpg"
+  },
+  {
+    "title": "マイグル",
+    "date": "2024/08",
+    "description": "全ての音楽好きに！音楽コミュニティサービス。（概念検証中）  \n[音楽SNS「マイグル」を仮公開しました](/blog/v2baup4hzwyi)",
+    "link": "https://mygroove.cho-ice.xyz/",
+    "image": "/work-thumbs/mygl.png"
+  },
+  {
+    "title": "Auto Alt Generator",
+    "date": "2024/06",
+    "description": "画像の説明を自動で生成するWebアプリ。  \n[画像のalt属性を自動で作ってくれるWebアプリを作ってみた](https://qiita.com/avaice/items/cdab32e3bd6bae28034c)",
+    "link": "https://aag.cho-ice.xyz/",
+    "image": "/work-thumbs/aag.png"
+  },
+  {
+    "title": "TierNote(β)",
+    "date": "2024/04",
+    "description": "使い方は自由自在！新しいコンセプトの、縦横に並べて使える付箋サービスです。  \n現在β版として公開中です。将来的にはWebSocketを使った複数人の同時編集が可能になる予定です。",
+    "link": "https://tier-note.cho-ice.xyz/",
+    "image": "/work-thumbs/tiernote.png"
+  },
+  {
+    "title": "オンラインリバーシ",
+    "date": "2024/04",
+    "description": "ユーザー登録不要で遊べるオンラインリバーシ。URLを共有するだけで簡単にオンラインプレイができます。  \nリバーシを友達とやりたいと思った時に、Web上で快適・簡単にプレイできるリバーシサイトが少なかったので作りました。",
+    "link": "https://online-reversi.xyz/",
+    "image": "/work-thumbs/reversi.png"
+  },
+  {
+    "title": "飲食店検索サービス(開発凍結中)",
+    "date": "2023/12-2024/03",
+    "description": "動画ベースで近くの飲食店が探せるWebアプリ。Auth0での認証やスケーラブルな運用ができる設計など色々とこだわりましたが、現状では他のサービスとの差別化が難しいと感じたため、開発を凍結しています。  \nCUIアプリ, Webアプリの開発に対応。",
+    "image": "/work-thumbs/mogleu.png"
+  },
+  {
+    "title": "icecript",
+    "ruby": "あいすくりぷと",
+    "date": "2023/08",
+    "description": "icelang以来の、念願のまともな自作言語！  \nCUIアプリ, Webアプリの開発に対応。",
+    "image": "/work-thumbs/icecript.jpg",
+    "link": "https://avaice.github.io/icecript/"
+  },
+  {
+    "title": "pipo",
+    "ruby": "ぴぽ",
+    "date": "2023/03",
+    "description": "SNSと掲示板の中間を目指した、匿名性があるけど人間味も感じられる、[ふわふわしたSNSを目指して開発しました](/blog/pipo-launched)。  \nPWAに対応しているのでネイティブアプリのように使用できます！",
+    "image": "/work-thumbs/pipo.png",
+    "link": "https://pipo-pearl.vercel.app"
+  },
+  {
+    "title": "動画切り抜きくん",
+    "date": "2023/02",
+    "description": "動画の一部を切り抜くことができるWebアプリ。  \nffmpeg.wasmを使ってブラウザ上で動画処理を行っているため、動画をサーバーにアップロードせず編集可能です！  \nまた、動画を切り抜く際に再エンコードを行っていないので、WebアプリながらWindows/Mac上で動く動画編集ソフトと遜色ない速度で書き出すことができます。",
+    "image": "/work-thumbs/kirinukikun.jpg",
+    "link": "https://flagmoviestudio.cho-ice.xyz/"
+  },
+  {
+    "title": "Console MIDI Recorder",
+    "date": "2022/09",
+    "description": "Windowsで動作するMIDIレコーダー。C#で作りました。  \nMIDIデバイスと音声入力デバイスを関連づけることで、CUIで簡単にMIDIからWAVへの変換ができます！",
+    "image": "/work-thumbs/cmr.jpg",
+    "link": "https://github.com/avaice/ConsoleMidiRecorder"
+  },
+  {
+    "title": "Nusim Engine",
+    "ruby": "えぬゆーしむ えんじん",
+    "date": "2022/06",
+    "description": "経営シミュレーションゲームを作りたくてそれ用に作ったエンジン。  \n更新が必要な部分だけしか再レンダリングを行わないのでサクサク動きます  \n(2007年発売のThinkPad X61でも処理落ちしないぞ！)",
+    "image": "/work-thumbs/nusim.jpg",
+    "link": "https://cho-ice.xyz/lab/nusim/"
+  },
+  {
+    "title": "DTM同好会(サービス終了)",
+    "date": "2022/03",
+    "description": "SNSを作ってみたいと思い、作りました。サーバーサイドを書いた経験がほとんどなかったのですが、ユーザー登録のメール認証やいいねコメント機能など、いろいろ頑張りました。  \nコンセプトはDTMをしている者同士で途中経過を気軽に上げられるSNSです。MIDIがそのまま投稿できるSNSはあまりないと思います。",
+    "image": "/work-thumbs/clubdtm.png"
+  },
+  {
+    "title": "icelang",
+    "ruby": "あいすらんぐ",
+    "date": "2021/12",
+    "description": "自作言語が作りたくて作ってみました。実用性はありませんが、相当独特な言語になっていて面白いと思います。  \n次はもうすこし便利な言語を作りたいです。",
+    "image": "/work-thumbs/icelang.png",
+    "link": "https://cho-ice.xyz/icelang/"
+  },
+  {
+    "title": "あいすバーオンライン",
+    "date": "2021/11",
+    "description": "ジェ〇ガインスパイア系オンラインゲーム  \nダウンロード不要で、最大8人でプレイできます。  \nUnity + Photon Unity Network2で作りました。",
+    "image": "/work-thumbs/icebar.png",
+    "link": "https://cho-ice.xyz/files/icebar_wgl/index_classic.html"
+  }
+]
