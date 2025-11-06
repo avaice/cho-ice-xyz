@@ -1,4 +1,5 @@
 ---
+import Image from "astro/components/Image.astro";
 import MainLayout from "../../layouts/main-layout.astro";
 import "../../styles/global.css";
 import WorksJson from "./_works.json";
@@ -54,9 +55,9 @@ const years = Object.keys(groupedByYear)
                   class="w-full aspect-4/3 bg-gray-100"
                   onclick={`toggleWorkDescription(${year}, ${index})`}
                 >
-                  <img
-                    width="320"
-                    height="240"
+                  <Image
+                    width={320}
+                    height={240}
                     src={work.image}
                     alt={work.title}
                     loading="lazy"
