@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
 .markdown-container {
   ul {
     list-style-type: disc;
