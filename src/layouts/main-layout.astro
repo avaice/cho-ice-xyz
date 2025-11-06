@@ -19,10 +19,10 @@ const { title, notitle } = Astro.props;
     <title>{title}</title>
   </head>
   <body
-    class="flex flex-col md:flex-row gap-16 p-4 md:py-12 max-w-[1024px] mx-auto"
+    class="flex flex-col md:flex-row md:gap-16 md:py-12 max-w-[1024px] mx-auto"
   >
     <Header />
-    <div class="grow flex flex-col gap-6">
+    <div class="grow flex flex-col gap-6 p-4">
       {!notitle && <h1 class="text-4xl font-bold">{title}</h1>}
       <slot />
     </div>
