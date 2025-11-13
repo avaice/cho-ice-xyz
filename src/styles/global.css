@@ -30,6 +30,7 @@ html {
     font-size: 1.5rem;
   }
   h3 {
+    margin: 1.5rem 0 0.25rem 0;
     font-size: 1.25rem;
   }
   h4 {
@@ -47,5 +48,6 @@ html {
     background-color: #f0f0f0;
     padding: 1rem;
     border-radius: 0.5rem;
+    overflow-x: auto;
   }
 }
