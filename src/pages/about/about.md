@@ -5,12 +5,12 @@
 
 Web フロントエンドが好きなソフトウェアエンジニアです。
 
-## 経歴
+<!-- ## 経歴
 
 - 2025.04 株式会社ＸＸＸＸ (software engineer)
 - 2025.03 ＸＸ大学工学部 情報工学科 卒業
 - 2023.08 株式会社ＸＸＸ (intern)
-- 2022.08 ＸＸＸＸ株式会社 (part-time frontend engineer)
+- 2022.08 ＸＸＸＸ株式会社 (part-time frontend engineer) -->
 
 ## Links
 
