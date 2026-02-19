@@ -31,6 +31,8 @@ const blog = await getBlogDetail(blogId as string);
           <img
             transition:name={`eyecatch-${blogId}`}
             src={optimizeImage(blog.eyecatch.url, { width: 1200 })}
+            srcset={`${optimizeImage(blog.eyecatch.url, { width: 512 })} 512w, ${optimizeImage(blog.eyecatch.url, { width: 1200 })} 1200w`}
+            sizes="100vw"
             alt={blog.title}
             class="size-full object-cover"
           />

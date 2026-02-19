@@ -61,6 +61,8 @@ const years = Object.keys(groupedByYear)
                     {content.eyecatch?.url ? (
                       <img
                         src={optimizeImage(content.eyecatch.url, { width: 512 })}
+                        srcset={`${optimizeImage(content.eyecatch.url, { width: 512 })} 512w, ${optimizeImage(content.eyecatch.url, { width: 1200 })} 1200w`}
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         alt={content.title}
                         transition:name={`eyecatch-${content.id}`}
                         class="w-full aspect-16/9 object-cover group-hover:scale-105 group-active:scale-100 transition-all duration-300 ease-in-out"
