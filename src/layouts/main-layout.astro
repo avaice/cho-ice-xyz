@@ -82,11 +82,7 @@ const { title, notitle } = Astro.props;
       );
 
       document.addEventListener("astro:before-swap", (e) => {
-        if (
-          isSafari &&
-          e.navigationType === "traverse" &&
-          e.direction === "back"
-        ) {
+        if (isSafari && e.navigationType === "traverse") {
           e.viewTransition.skipTransition();
         }
       });
