@@ -1,6 +1,6 @@
 ---
 import MainLayout from "../../layouts/main-layout.astro";
-import { getBlogDetail, getBlogs } from "../../lib/microcms";
+import { getBlogDetail, getBlogs, optimizeImage, optimizeContentImages } from "../../lib/microcms";
 
 // 詳細記事ページの全パスを取得
 export async function getStaticPaths() {
@@ -30,7 +30,7 @@ const blog = await getBlogDetail(blogId as string);
         {
           <img
             transition:name={`eyecatch-${blogId}`}
-            src={blog.eyecatch?.url ?? ""}
+            src={optimizeImage(blog.eyecatch.url, { width: 1200 })}
             alt={blog.title}
             class="size-full object-cover"
           />
@@ -38,5 +38,5 @@ const blog = await getBlogDetail(blogId as string);
       </div>
     )
   }
-  <div class="markdown-container" set:html={blog.content} />
+  <div class="markdown-container" set:html={optimizeContentImages(blog.content)} />
 </MainLayout>

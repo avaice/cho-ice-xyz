@@ -2,7 +2,7 @@
 import MainLayout from "../../layouts/main-layout.astro";
 import "../../styles/global.css";
 
-import { getBlogs } from "../../lib/microcms";
+import { getBlogs, optimizeImage } from "../../lib/microcms";
 const response = await getBlogs({
   fields: ["id", "title", "eyecatch", "publishedAt"],
   limit: 9999,
@@ -60,7 +60,7 @@ const years = Object.keys(groupedByYear)
                   <div class="overflow-hidden shrink-0">
                     {content.eyecatch?.url ? (
                       <img
-                        src={content.eyecatch?.url ?? ""}
+                        src={optimizeImage(content.eyecatch.url, { width: 512 })}
                         alt={content.title}
                         transition:name={`eyecatch-${content.id}`}
                         class="w-full aspect-16/9 object-cover group-hover:scale-105 group-active:scale-100 transition-all duration-300 ease-in-out"
