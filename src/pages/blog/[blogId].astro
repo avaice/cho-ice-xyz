@@ -18,11 +18,25 @@ const blog = await getBlogDetail(blogId as string);
 ---
 
 <MainLayout title={blog.title}>
-  <span class="text-sm text-gray-500">
+  <span class="text-sm text-gray-500" transition:name={`publishedAt-${blogId}`}>
     <time datetime={blog.publishedAt}
       >{new Date(blog.publishedAt!).toLocaleDateString()}</time
     >
     に公開
   </span>
+  {
+    blog.eyecatch?.url && (
+      <div class="overflow-hidden w-full aspect-16/9">
+        {
+          <img
+            transition:name={`eyecatch-${blogId}`}
+            src={blog.eyecatch?.url ?? ""}
+            alt={blog.title}
+            class="size-full object-cover"
+          />
+        }
+      </div>
+    )
+  }
   <div class="markdown-container" set:html={blog.content} />
 </MainLayout>

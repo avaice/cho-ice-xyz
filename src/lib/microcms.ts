@@ -11,6 +11,11 @@ const client = createClient({
 export type Blog = {
   title: string;
   content: string;
+  eyecatch?: {
+    url: string;
+    width: number;
+    height: number;
+  };
 } & MicroCMSListContent;
 
 // APIの呼び出し
@@ -20,7 +25,7 @@ export const getBlogs = async (queries?: MicroCMSQueries) => {
 
 export const getBlogDetail = async (
   contentId: string,
-  queries?: MicroCMSQueries
+  queries?: MicroCMSQueries,
 ) => {
   return await client.getListDetail<Blog>({
     endpoint: "blogs",

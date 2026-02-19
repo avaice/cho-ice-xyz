@@ -29,7 +29,7 @@ const groupedByYear = WorksJson.reduce(
     acc[year].push(work);
     return acc;
   },
-  {} as Record<number, Work[]>
+  {} as Record<number, Work[]>,
 );
 
 // 年を降順でソート
@@ -52,7 +52,7 @@ const years = Object.keys(groupedByYear)
               >
                 <button
                   type="button"
-                  class="w-full aspect-4/3 bg-gray-100"
+                  class="w-full aspect-4/3 bg-gray-100 overflow-hidden group rounded shadow border border-gray-200 hover:outline-green-700 outline-2 outline-transparent focus-visible:outline-green-700 transition-all duration-300 ease-in-out"
                   onclick={`toggleWorkDescription(${year}, ${index})`}
                 >
                   <Image
@@ -61,7 +61,7 @@ const years = Object.keys(groupedByYear)
                     src={work.image}
                     alt={work.title}
                     loading="lazy"
-                    class="size-full object-cover shadow border border-gray-200 md:hover:outline-green-700 outline-2 outline-transparent transition-all rounded"
+                    class="size-full object-cover transition-all group-hover:scale-105 duration-300 ease-in-out"
                   />
                 </button>
                 <div
@@ -89,7 +89,7 @@ const years = Object.keys(groupedByYear)
   async function toggleWorkDescription(year, index) {
     const desc = document.getElementById(`work-${year}-${index}`);
     const container = document.getElementById(
-      `work-container-${year}-${index}`
+      `work-container-${year}-${index}`,
     );
     if (!desc || !container) return;
 

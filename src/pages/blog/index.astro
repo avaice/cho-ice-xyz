@@ -3,22 +3,80 @@ import MainLayout from "../../layouts/main-layout.astro";
 import "../../styles/global.css";
 
 import { getBlogs } from "../../lib/microcms";
-const response = await getBlogs({ fields: ["id", "title"], limit: 9999 });
+const response = await getBlogs({
+  fields: ["id", "title", "eyecatch", "publishedAt"],
+  limit: 9999,
+});
+
+type Blog = (typeof response.contents)[number];
+
+const groupedByYear = response.contents.reduce(
+  (acc: Record<number, Blog[]>, blog) => {
+    const year = new Date(blog.publishedAt!).getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(blog);
+    return acc;
+  },
+  {} as Record<number, Blog[]>,
+);
+
+const years = Object.keys(groupedByYear)
+  .map(Number)
+  .sort((a, b) => b - a);
 ---
 
 <MainLayout title="Blog">
-  <ul class="flex flex-col gap-2">
+  <div class="flex flex-col gap-16">
     {
-      response.contents.map((content) => (
-        <li>
-          <a
-            href={`/blog/${content.id}`}
-            class="underline hover:text-green-700 transition"
-          >
-            {content.title}
-          </a>
-        </li>
+      years.map((year) => (
+        <div class="flex gap-4 flex-col md:flex-row-reverse">
+          <h2 class="text-3xl font-bold text-gray-500">{year}</h2>
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            {groupedByYear[year].map((content) => (
+              <li>
+                <a
+                  href={`/blog/${content.id}`}
+                  class="flex flex-col gap-2 shadow-lg rounded-xl aspect-5/4 overflow-hidden group hover:outline-green-700 outline-2 outline-gray-100 focus-visible:outline-green-700 transition-all duration-300 ease-in-out"
+                >
+                  <span class="flex flex-col gap-1 px-4 pt-2 flex-1">
+                    <span
+                      class="font-bold"
+                      transition:name={`title-${content.title}`}
+                    >
+                      {content.title}
+                    </span>
+                    <span
+                      class="text-sm text-gray-500"
+                      transition:name={`publishedAt-${content.id}`}
+                    >
+                      <time datetime={content.publishedAt}>
+                        {new Date(content.publishedAt!).toLocaleDateString()}
+                        に公開
+                      </time>
+                    </span>
+                  </span>
+                  <div class="overflow-hidden shrink-0">
+                    {content.eyecatch?.url ? (
+                      <img
+                        src={content.eyecatch?.url ?? ""}
+                        alt={content.title}
+                        transition:name={`eyecatch-${content.id}`}
+                        class="w-full aspect-16/9 object-cover group-hover:scale-105 group-active:scale-100 transition-all duration-300 ease-in-out"
+                      />
+                    ) : (
+                      <div class="w-full aspect-16/9 bg-gray-200 flex items-center justify-center text-[72px] text-gray-500">
+                        📝
+                      </div>
+                    )}
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       ))
     }
-  </ul>
+  </div>
 </MainLayout>
