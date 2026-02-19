@@ -1,18 +1,23 @@
 ---
-
+const daySrc = "/cover_day.jpeg";
+const nightSrc = "/cover_night.jpeg";
 ---
 
-<div class="aspect-4/3 w-full bg-gray-200 rounded">
-  <img id="cover-image" alt="" class="w-full h-full object-cover rounded" />
-</div>
+<cover-image data-day-src={daySrc} data-night-src={nightSrc}>
+  <div class="aspect-4/3 w-full bg-gray-200 rounded">
+    <img alt="" class="w-full h-full object-cover rounded" />
+  </div>
+</cover-image>
+
 <script>
-  const date = new Date();
-  const hour = date.getHours();
-  const isDay = hour >= 6 && hour < 18;
-  const image = document.getElementById(
-    "cover-image"
-  ) as HTMLImageElement | null;
-  if (image) {
-    image.src = isDay ? "/cover_day.jpeg" : "/cover_night.jpeg";
+  class CoverImage extends HTMLElement {
+    constructor() {
+      super();
+      const img = this.querySelector("img")!;
+      const hour = new Date().getHours();
+      const isDay = hour >= 6 && hour < 18;
+      img.src = isDay ? this.dataset.daySrc! : this.dataset.nightSrc!;
+    }
   }
+  customElements.define("cover-image", CoverImage);
 </script>
