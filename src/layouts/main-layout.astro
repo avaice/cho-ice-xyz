@@ -26,6 +26,21 @@ const { title, notitle } = Astro.props;
     />
     <title>{title}{title === "cho-ice.xyz" ? "" : " | cho-ice.xyz"}</title>
     <ClientRouter />
+    <script>
+      const isSafari = /^((?!chrome|android).)*safari/i.test(
+        navigator.userAgent
+      );
+
+      document.addEventListener("astro:before-swap", (e) => {
+        if (
+          isSafari &&
+          e.navigationType === "traverse" &&
+          e.direction === "back"
+        ) {
+          e.viewTransition.skipTransition();
+        }
+      });
+    </script>
   </head>
   <body
     class="flex flex-col md:flex-row md:gap-16 md:py-12 max-w-[1024px] mx-auto"
