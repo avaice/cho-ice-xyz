@@ -31,7 +31,6 @@
     "title": "オンラインリバーシ",
     "date": "2024/04",
     "description": "ユーザー登録不要で遊べるオンラインリバーシ。URLを共有するだけで簡単にオンラインプレイができます。  \nリバーシを友達とやりたいと思った時に、Web上で快適・簡単にプレイできるリバーシサイトが少なかったので作りました。",
-    "link": "https://online-reversi.xyz/",
     "image": "/work-thumbs/reversi.webp"
   },
   {
@@ -52,9 +51,8 @@
     "title": "pipo",
     "ruby": "ぴぽ",
     "date": "2023/03",
-    "description": "SNSと掲示板の中間を目指した、匿名性があるけど人間味も感じられる、[ふわふわしたSNSを目指して開発しました](/blog/pipo-launched)。  \nPWAに対応しているのでネイティブアプリのように使用できます！",
-    "image": "/work-thumbs/pipo.webp",
-    "link": "https://pipo-pearl.vercel.app"
+    "description": "SNSと掲示板の中間を目指した、匿名性があるけど人間味も感じられる、ふわふわしたSNSを目指して開発しました。  \nPWAに対応しているのでネイティブアプリのように使用できます！",
+    "image": "/work-thumbs/pipo.webp"
   },
   {
     "title": "動画切り抜きくん",
