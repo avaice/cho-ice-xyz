@@ -89,4 +89,16 @@ const years = Object.keys(groupedByYear)
       ))
     }
   </div>
+  <script>
+    window.addEventListener("pageshow", (event) => {
+      // Back-Forward Cache でクラスが維持されてしまうときの対策
+      if (event.persisted) {
+        document
+          .querySelectorAll("img[id^='eyecatch-'].animate-pulse")
+          .forEach((el) => {
+            el.classList.remove("animate-pulse");
+          });
+      }
+    });
+  </script>
 </MainLayout>
