@@ -5,9 +5,10 @@ import "../styles/global.css";
 interface Props {
   title: string;
   notitle?: boolean;
+  nomobilemenu?: boolean;
 }
 
-const { title, notitle } = Astro.props;
+const { title, notitle, nomobilemenu } = Astro.props;
 ---
 
 <html lang="ja">
@@ -27,7 +28,7 @@ const { title, notitle } = Astro.props;
   <body
     class="flex flex-col md:flex-row md:gap-16 md:py-12 max-w-[1024px] mx-auto"
   >
-    <Header />
+    <Header nomobilemenu={nomobilemenu} />
     <div class="grow flex flex-col gap-6 p-4">
       {
         !notitle && (

@@ -1,10 +1,15 @@
 ---
 import CoverImage from "../components/cover-image.astro";
+import MobileLinks from "../components/mobilelinks.astro";
+import { links } from "../constants/links";
 import MainLayout from "../layouts/main-layout.astro";
 import "../styles/global.css";
 ---
 
-<MainLayout title="cho-ice.xyz">
+<MainLayout title="cho-ice.xyz" nomobilemenu>
+  <div class="md:hidden">
+    <MobileLinks links={links} />
+  </div>
   <div class="flex flex-col gap-2">
     <CoverImage />
     <p class="text-center text-sm">吾妻小富士の山頂からの風景(福島県福島市)</p>

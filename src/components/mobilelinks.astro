@@ -1,0 +1,17 @@
+---
+interface Props {
+  links: readonly { label: string; href: string }[];
+}
+
+const { links } = Astro.props;
+---
+
+<ul class="flex gap-2">
+  {
+    links.map((link) => (
+      <li class="text-black w-full border-b block hover:text-green-700 transition">
+        <a href={link.href}>{link.label}</a>
+      </li>
+    ))
+  }
+</ul>
