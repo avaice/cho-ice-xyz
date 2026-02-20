@@ -10,7 +10,9 @@ const { links } = Astro.props;
   {
     links.map((link) => (
       <li class="text-black w-full border-b block hover:text-green-700 transition">
-        <a href={link.href}>{link.label}</a>
+        <a href={link.href} class="w-full inline-block">
+          {link.label}
+        </a>
       </li>
     ))
   }

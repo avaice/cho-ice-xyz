@@ -24,9 +24,11 @@ const { nomobilemenu } = Astro.props;
           />
         </a>
         <button
+          id="menu-toggle"
           class={nomobilemenu ? "hidden" : ""}
           aria-label="Menu"
-          onclick="document.getElementById('menu').classList.toggle('hidden');"
+          aria-expanded="false"
+          aria-controls="menu"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +40,7 @@ const { nomobilemenu } = Astro.props;
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-menu"
+            class="lucide lucide-menu transition-transform duration-300"
           >
             <>
               <line x1="3" y1="12" x2="21" y2="12" />
@@ -50,8 +52,18 @@ const { nomobilemenu } = Astro.props;
       </div>
     )
   }
-  <nav id="menu" class="hidden w-full bg-white px-4">
-    <MobileLinks links={links} />
+  <nav
+    id="menu"
+    class="grid grid-rows-[0fr] transition-all duration-300 ease-out w-full bg-white px-4 overflow-hidden"
+  >
+    <div class="overflow-hidden">
+      <div
+        id="menu-content"
+        class="transition-[opacity,transform] duration-200 ease-out pb-2"
+      >
+        <MobileLinks links={links} />
+      </div>
+    </div>
   </nav>
 
   <div class="bg-linear-to-b from-white/95 to-transparent h-[15px]"></div>
@@ -80,3 +92,19 @@ const { nomobilemenu } = Astro.props;
     </nav>
   </div>
 </header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      if (isOpen) {
+        menu.classList.replace("grid-rows-[1fr]", "grid-rows-[0fr]");
+      } else {
+        menu.classList.replace("grid-rows-[0fr]", "grid-rows-[1fr]");
+      }
+    });
+  }
+</script>
