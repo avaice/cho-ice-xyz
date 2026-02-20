@@ -1,6 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
-
 import Header from "../components/header.astro";
 import "../styles/global.css";
 
@@ -25,68 +23,6 @@ const { title, notitle } = Astro.props;
       rel="stylesheet"
     />
     <title>{title}{title === "cho-ice.xyz" ? "" : " | cho-ice.xyz"}</title>
-    <!-- https://github.com/withastro/astro/issues/11919#issuecomment-3732177707 -->
-    <script is:inline>
-      (function () {
-        const isChromeIOS = /CriOS/i.test(navigator.userAgent);
-        const isEdgeIOS = /EdgiOS/i.test(navigator.userAgent);
-
-        if (!isChromeIOS && !isEdgeIOS) return;
-
-        let initialCallSkipped = false;
-        const originalReplaceState = history.replaceState;
-
-        history.replaceState = function (state, title, url) {
-          if (!initialCallSkipped && state && typeof state.index === "number") {
-            initialCallSkipped = true;
-            return;
-          }
-          return originalReplaceState.apply(this, arguments);
-        };
-
-        let currentIndex = 0;
-
-        const originalPushState = history.pushState;
-        history.pushState = function () {
-          currentIndex++;
-          return originalPushState.apply(this, arguments);
-        };
-
-        window.addEventListener(
-          "popstate",
-          function (ev) {
-            if (ev.state === null && currentIndex > 0) {
-              // Big jump back to initial entry
-              const stepsForward = currentIndex - 1;
-              if (stepsForward > 0) {
-                currentIndex = 1;
-                setTimeout(() => history.go(stepsForward), 0);
-              } else {
-                currentIndex = 0;
-                // Going back to null state, have to reload the page so Astro can render it properly
-                setTimeout(() => history.go(0), 0);
-              }
-            } else if (ev.state && typeof ev.state.index === "number") {
-              // Normal navigation - update our tracking
-              currentIndex = ev.state.index;
-            }
-          },
-          true,
-        );
-      })();
-    </script>
-    <ClientRouter />
-    <script>
-      const isSafari = /^((?!chrome|android).)*safari/i.test(
-        navigator.userAgent,
-      );
-
-      document.addEventListener("astro:before-swap", (e) => {
-        if (isSafari && e.navigationType === "traverse") {
-          e.viewTransition.skipTransition();
-        }
-      });
-    </script>
   </head>
   <body
     class="flex flex-col md:flex-row md:gap-16 md:py-12 max-w-[1024px] mx-auto"

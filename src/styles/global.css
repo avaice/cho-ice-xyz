@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@view-transition {
+  navigation: auto;
+}
+
 html {
   font-family: "Noto Sans JP", sans-serif;
 }
@@ -19,7 +23,10 @@ html {
   p {
     margin: 1rem 0;
   }
-  h1,h2,h3,h4{
+  h1,
+  h2,
+  h3,
+  h4 {
     font-weight: bold;
   }
   h1 {
@@ -36,15 +43,15 @@ html {
   h4 {
     font-size: 1rem;
   }
-  a{
+  a {
     color: black;
     text-decoration: underline;
     transition: color 0.2s ease;
-    &:hover{
+    &:hover {
       color: green;
     }
   }
-  pre{
+  pre {
     background-color: #f0f0f0;
     padding: 1rem;
     border-radius: 0.5rem;
