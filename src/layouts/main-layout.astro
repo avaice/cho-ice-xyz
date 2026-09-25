@@ -6,9 +6,23 @@ interface Props {
   title: string;
   notitle?: boolean;
   nomobilemenu?: boolean;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
 }
 
-const { title, notitle, nomobilemenu } = Astro.props;
+const {
+  title,
+  notitle,
+  nomobilemenu,
+  description = "avaiceの個人サイト",
+  image = "/cover_day.jpeg",
+  type = "website",
+} = Astro.props;
+
+const pageTitle = title === "cho-ice.xyz" ? title : `${title} | cho-ice.xyz`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
 ---
 
 <html lang="ja">
@@ -23,7 +37,17 @@ const { title, notitle, nomobilemenu } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=block"
       rel="stylesheet"
     />
-    <title>{title}{title === "cho-ice.xyz" ? "" : " | cho-ice.xyz"}</title>
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:site_name" content="cho-ice.xyz" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body
     class="flex flex-col md:flex-row md:gap-16 md:py-12 max-w-[1024px] mx-auto"
