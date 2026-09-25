@@ -1,5 +1,12 @@
 [
   {
+    "title": "neouter",
+    "date": "2026/07",
+    "description": "Navigation APIベースのミニマリスト向けRouting Library",
+    "link": "https://neouter.pages.dev/",
+    "image": "/work-thumbs/neouter.webp"
+  },
+  {
     "title": "ScriptBoard",
     "date": "2024/11",
     "description": "生成AI搭載のオンラインスクリプトエディター。  \nNext.jsを使ったフルスタック開発です。バックエンドとフロントエンドを同じコードベースにすることで開発効率を上げつつ、SSRとCSRを適切に使い分けてパフォーマンスも重視しました。",
